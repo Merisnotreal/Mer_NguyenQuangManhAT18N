@@ -97,7 +97,7 @@ mở file kéo xuống thì em thấy souce nên em cat thẳng vào nó và thu
 
 > Flag form: KCSC, for example : KCSC{0xdeadbeef}
 
-Ta thấy đuôi của file là asm, nên em sẽ mở file bằng SASM và thu được đoạn code bằng asm
+Ta sẽ mở file bằng SASM và thu được đoạn code bằng asm
 
 <img width="700" alt="image" src="https://user-images.githubusercontent.com/105163556/212977553-20bfec2f-2ca7-431c-aa57-8acbe4c339bb.png">
 
