@@ -88,21 +88,6 @@ mở file kéo xuống thì em thấy souce nên em cat thẳng vào nó và thu
 >flag KCSC{T3t_n4y_4nh_kh0ng_th3m_d0t_ph4o_V1_ti3ng_cu0i_3m_r0n_r4_l0ng_4nh_r0i!}
 
 
-## AntiDebug
-
-
-> ĐỀ BÀI:Can you help me get output of
-
-> ENC(0xAB12DF34, 0x7B, 0x2D, 0x43)
-
-> Flag form: KCSC, for example : KCSC{0xdeadbeef}
-
-Ta sẽ mở file bằng SASM và thu được đoạn code bằng asm
-
-<img width="700" alt="image" src="https://user-images.githubusercontent.com/105163556/212977553-20bfec2f-2ca7-431c-aa57-8acbe4c339bb.png">
-
-Và em sẽ dịch đoạn code này sang C cho dễ hiểu
-
 
 
 
