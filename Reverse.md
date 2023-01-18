@@ -89,6 +89,58 @@ mở file kéo xuống thì em thấy souce nên em cat thẳng vào nó và thu
 
 
 
+## Antidebug
+
+> ĐỀ BÀI: Can you help me get output of ENC(0xAB12DF34, 0x7B, 0x2D, 0x43) và file .asm
+
+đề bài là câu lệnh gọi hàm và kèo theo file .asm, khi mở file lên là một hàm nên e nghĩ kia là các parameter và nhiệm vụ là từ parameter đó thực thi xem input là gì
+
+```
+void __cdecl ENC(int a1, int a2, int a3, int a4)
+
+push    ebp
+mov     ebp, esp
+mov     eax, [ebp+0Ch]
+add     eax, [ebp+10h]
+add     eax, [ebp+8]
+mov     ecx, [ebp+14h]
+add     ecx, 0Ah
+xor     ecx, [ebp+8]
+add     eax, ecx
+xor     eax, [ebp+8]
+push    eax             ; char
+push    offset Format   ; "0x%x"
+call    printf
+add     esp, 8
+pop     ebp
+retn
+```
+
+chú ý vị trí của các parameter:
+ebp+8 = a1; ebp+0Ch = a2; ebp+10h = a3; ebp+14h = a4 với a1, a2, a3, a4 lần lược là 0xAB12DF34, 0x7B, 0x2D, 0x43
+
+mov     eax, [ebp+0Ch] ; có nghĩa là dịch giá trị của a2(ebp+0Ch) vào eax
+...
+add     eax, [ebp+10h] ; cộng eax với a3(ebp+10h) và sau đó lưu vào eax
+...
+xor     ecx, [ebp+8] ; xor giá trị ecx với a1(ebp+8) và lưu vào ecx
+như vậy đoạn code có thể dịch lại sang c như sau
+
+```
+int result,shadow;
+result = a1 + a2 + a3;
+shadow = (a4 + 0xA) ^ a1; 
+result = result + shadow;
+result = result ^ a1; 
+printf("0x%x", result);
+```
+Chú ý rằng:
+add eax, ecx ; Cộng eax + ecx = 0xab12dfdc + 0xab12df79
+eax = 0x15625bf55 -> đồng thời eax chỉ mang 4 byte nên sẽ có giá trị thực là eax = 0x5625bf55
+
+như vậy flag được in ra là KCSC{0xfd376061}
+
+
 
 
 
