@@ -138,7 +138,7 @@ Chú ý rằng:
 add eax, ecx ; Cộng eax + ecx = 0xab12dfdc + 0xab12df79
 eax = 0x15625bf55 -> đồng thời eax chỉ mang 4 byte nên sẽ có giá trị thực là eax = 0x5625bf55
 
-như vậy flag được in ra là KCSC{0xfd376061}
+như vậy flag là KCSC{0xfd376061}
 
 
 
