@@ -142,6 +142,72 @@ như vậy flag là KCSC{0xfd376061}
 
 
 
+## Merger XOR
+Trước tiên, đề bài cho ta 2 file
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/105163556/218100821-4b68ae09-d33c-46b4-841b-a6b9ea7df923.png">
+
+Một file code C và một file text
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/105163556/218101028-99fda76e-c0d4-4a3f-b79a-f433303d06a0.png">
+
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/105163556/218101059-a5bb9ca3-0e90-4be7-8e3f-26bfe02722f5.png">
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/105163556/218101133-7306448b-623e-4831-a5d3-7b52b6e3e891.png">
+
+Sau khi làm lại và đọc sơ các write up của bài này thì em hiểu là:
+1. Trước tiên hàm được mã hóa bằng hàm flat nó sẽ chia đôi mỗi ký tự trong chuỗi Cipher, và với mỗi 4 bit cuối  của ký tự vừa chia xong ta sẽ Merger với 4 bit đầu của ký tự tiếp theo để tạo thành chuỗi mới rồi XOR với ký tự ban đầu:
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/105163556/218104698-3265df06-d413-4b72-a591-69c1448a43e1.png">
+
+Và nó sẽ được chạy 5 lần để in ra kết quả giống trong Stdout.txt:
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/105163556/218105415-11b59725-6fc4-4ce2-8c5b-1053cf05e93f.png">
+
+2. Cách giải: 
++ Với bài này ta sẽ tìm 2 byte input, nằm trong khoảng từ 0 - 255 encrypt sau đó so sánh với byte đầu trong Cipher nếu đúng thì quay lui hết các byte còn lại cho đến khi hết chuỗi, còn sai thì chọn lại cho đến khi đúng. 
++ Do ta đã biết mẫu của flag sẽ chứa chuỗi "KCSC" cho nên em sẽ viết code để kiếm chuỗi flag còn lại:
+
+<img width="662" alt="image" src="https://user-images.githubusercontent.com/105163556/218120467-1ff2c3b7-c971-4a97-b8a8-61f76d7ad99e.png">
+
+
+<img width="662" alt="image" src="https://user-images.githubusercontent.com/105163556/218120323-cec8903d-73fb-473a-8f4d-f1b6f928371d.png">
+
+Và kết quả : <img width="662" alt="image" src="https://user-images.githubusercontent.com/105163556/218120525-8a8e3302-55a5-4d67-bc3b-e562a9f04258.png">
+
+## Find Me làm lại:
+
+Đầu tiên em dùng  dùng Detect it easy để xác định file trước
+
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/105163556/212975016-8f299232-3123-4d21-8b2f-c49ce02dcfc2.png">
+
+Và file được viết bằng python và đã được Packet nên ta sẽ tiến hành giải nén, ở đây em sữ dụng PyInstaller Extractor
+
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/105163556/212976028-cfcd38f8-f099-4807-a1e7-a216395578ad.png">
+
+ta thu được file source đã extracted
+
+
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/105163556/212976875-50a2e47c-977b-44b6-a41a-8682cad34c69.png">
+
+Tiếp theo ta cần decomplyce file souce.pyc sang souce.py để có thể đọc được file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
